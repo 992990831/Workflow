@@ -20,7 +20,7 @@ namespace Service.Workflows.Steps
         public override async Task<ExecutionResult> RunAsync(IStepExecutionContext context)
         {            
             var data = context.Workflow.Data as WorkflowData;
-            Cache.WFInstances.Add(new Data.WorkflowData(){
+            var node = new Data.WorkflowData(){
                 WFName = context.Workflow.WorkflowDefinitionId,
                 WFInstanceId = context.Workflow.Id,
                 WFInstanceNo = DateTime.Now.ToString("yyyyMMdd") + Cache.WFInstances.Count+1,
@@ -28,8 +28,16 @@ namespace Service.Workflows.Steps
                 Requestor = data.Requestor,
                 Finance = data.Finance,
                 Amount = data.Amount,
-                CreatedAt = DateTime.Now
+                CreatedAt = DateTime.Now,
+            };
+
+            node.steps.Add(new Data.WorkflowStep() {
+                name= "Start Workflow",
+                approver = "Andy Hu",
+                comment = "Submit Request"
             });
+
+            Cache.WFInstances.Add(node);
 
             Output = "done";
             return ExecutionResult.Next();

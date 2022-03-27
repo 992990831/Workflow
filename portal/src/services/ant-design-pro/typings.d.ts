@@ -96,6 +96,13 @@ declare namespace API {
     amount: string;
     status: number;
     financeApproved: boolean;
+    steps: WorkFlowStep[];
+  };
+
+  type WorkFlowStep = {
+    name: string;
+    approver: string;
+    comment: string;
   };
 
   type FakeCaptcha = {

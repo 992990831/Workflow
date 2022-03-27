@@ -42,16 +42,22 @@ export default {
       return;
     }
 
+    const roles = {
+      admin: 'Admin',
+      user: 'Andy Hu',
+      finance: 'Jessy',
+    };
+
     // console.log(req.query['role']);
     let isAdmin = getAccess() === 'admin';
     //hardcoded roles
-
+    console.log(`access: ${getAccess()}`);
     res.send({
       success: true,
       data: {
-        name: isAdmin ? 'Andy Hu' : 'Jessy',
+        name: roles[getAccess()],
         avatar: isAdmin
-          ? 'profile-andy hu.jpg'
+          ? '/profile-andy hu.jpg'
           : 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
         userid: '00000001',
         email: isAdmin ? 'andy.hu@polestar.com' : 'yingjie.ge@polestar.com',
@@ -124,13 +130,22 @@ export default {
       access = 'admin';
       return;
     }
-    if ((password === 'ant.design' && username === 'user') || 'finance') {
+    if (password === 'ant.design' && username === 'user') {
       res.send({
         status: 'ok',
         type,
         currentAuthority: 'user',
       });
       access = 'user';
+      return;
+    }
+    if (password === 'ant.design' && username === 'finance') {
+      res.send({
+        status: 'ok',
+        type,
+        currentAuthority: 'finance',
+      });
+      access = 'finance';
       return;
     }
     if (type === 'mobile') {

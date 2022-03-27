@@ -11,12 +11,18 @@ namespace Service.Workflows.Steps
     public class RejectStep : StepBodyAsync
     {
         public override async Task<ExecutionResult> RunAsync(IStepExecutionContext context)
-        {            
+        {
             var wfInstance = Cache.WFInstances.FirstOrDefault(ins => ins.WFInstanceId == context.Workflow.Id);
 
-            if(wfInstance != null)
+            if (wfInstance != null)
             {
                 wfInstance.FinanceApproved = false;
+                wfInstance.steps.Add(new Data.WorkflowStep()
+                {
+                    name = "Finance Rejected",
+                    approver = "Jessy Ge",
+                    comment = "Finance Rejected"
+                });
             }
 
             return ExecutionResult.Next();

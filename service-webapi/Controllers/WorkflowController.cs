@@ -62,8 +62,6 @@ namespace service_webapi.Controllers
                 // body = "param=somevalue&param2=someothervalue"
             }
 
-
-            
             string workflowId = null;
             var def = _registry.GetDefinition(id, version);
             if (def == null)
@@ -124,6 +122,7 @@ namespace service_webapi.Controllers
         }
 
         //审核一个流程实例
+        //id：workflow instance id
         [HttpGet("approve/{id}")]
         public bool Approve(string id)
         {
@@ -138,7 +137,7 @@ namespace service_webapi.Controllers
             return true;
         }
 
-               //审核一个流程实例
+        //审核一个流程实例
         [HttpGet("reject/{id}")]
         public bool Reject(string id)
         {

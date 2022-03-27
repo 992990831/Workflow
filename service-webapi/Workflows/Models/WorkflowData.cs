@@ -1,13 +1,26 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.IO;
 using WorkflowCore.Interface;
 using WorkflowCore.Models;
 
 namespace Service.Workflows.Data
 {
+    public struct WorkflowStep
+    {
+        public string name { get; set; }
+        public string approver { get; set; }
+        public string comment { get; set; }
+    }
+
     public class WorkflowData
     {
+        public WorkflowData() {
+            this.steps = new List<WorkflowStep>();
+        }
+
         public string WFName { get; set; }
 
         //流程实例Id
@@ -33,5 +46,7 @@ namespace Service.Workflows.Data
         public DateTime CreatedAt { get; set; }
 
         public WorkflowStatus Status { get; set; }
+
+        public List<WorkflowStep> steps {get;set;}
     }
 }

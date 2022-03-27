@@ -85,7 +85,7 @@ const Login: React.FC = () => {
       <div className={styles.content}>
         <LoginForm
           logo={<img alt="logo" src="/polestar.png" />}
-          title="Polestar Sales Portal"
+          title="Polestar BPM Portal"
           subTitle={'by Polestar Digital China'}
           initialValues={{
             autoLogin: true,

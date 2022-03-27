@@ -17,6 +17,11 @@ namespace Service.Workflows.Steps
             if(wfInstance != null)
             {
                 wfInstance.FinanceApproved = true;
+                wfInstance.steps.Add(new Data.WorkflowStep(){
+                    name="Finance Approve",
+                    approver="Jessy Ge",
+                    comment="Finance Approved"
+                });
             }
 
             return ExecutionResult.Next();

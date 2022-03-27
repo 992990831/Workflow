@@ -95,7 +95,7 @@
     name: 'Request List',
     icon: 'table',
     path: '/workflow/list',
-    access: 'canAdmin',
+    access: 'canUser',
     component: './workflow/WFList',
   },
 
@@ -103,8 +103,16 @@
     name: 'Finance - Approval',
     icon: 'table',
     path: '/finance/approval',
-    access: 'canUser',
+    access: 'canFinance',
     component: './finance/approval',
+  },
+
+  {
+    name: 'Workflow Template',
+    icon: 'table',
+    path: '/workflow/template',
+    access: 'canAdmin',
+    component: './workflow/Template',
   },
 
   {
